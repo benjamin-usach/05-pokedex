@@ -1,0 +1,49 @@
+<mat-grid-list cols="1" *ngIf="!pokemon; else divPokemon">
+    <mat-grid-tile>
+        <mat-spinner></mat-spinner>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<ng-template #divPokemon>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="30px">
+        <div fxFlex="50">
+            <h1>#{{pokemon.id | number:"3.0-0"}} | {{pokemon.name.english| titlecase}}   <small><img *ngFor="let type of pokemon.type" src="../../../../assets/types/{{type}}.webp" alt="{{type}}" style="max-width: 24px;float:right;padding-right: 5px;"></small></h1>
+            <mat-divider style="padding-bottom: 20px;"></mat-divider>
+
+            <img [src]="pokemon | imagen" alt="{{pokemon.name.english}}"
+                style="width: 95%;-webkit-filter: drop-shadow(5px 5px 5px #222);filter: drop-shadow(5px 5px 5px #222);">
+            
+
+        </div>
+        <div fxFlex="50">
+            <h1> Info  </h1><br>
+            <mat-card style="margin-bottom: 10px">
+                <table mat-table style="width: 100%;">
+                    <tr mat-row *ngFor="let stat of pokemon.base| keyvalue"> <th style="text-align: left;"><h2> {{stat.key}}:</h2></th> <th style="text-align: left;"><h2> {{stat.value}} </h2></th> </tr>
+                </table>
+            </mat-card>
+            <mat-card style="margin-bottom: 10px">
+                <mat-grid-list cols="1" rowHeight="120px">
+                <mat-grid-tile>
+                <audio id="sound1" controls="" name="media" src="https://play.pokemonshowdown.com/audio/cries/{{pokemon.name.english | lowercase}}.mp3" type="audio/mpeg" style="display: none;"></audio>
+                <button mat-fab onclick="document.getElementById('sound1').play();"><mat-icon>volume_up</mat-icon></button>
+                </mat-grid-tile>
+                </mat-grid-list>
+            </mat-card>
+            <mat-accordion style="margin-bottom: 10px">
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" >
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Nombre en otros idiomas
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <table mat-table style="width: 100%;">
+                    <tr mat-row *ngFor="let idioma of pokemon.name| keyvalue"> <th style="text-align: left;"><h2> {{idioma.key | titlecase}}:</h2></th> <th style="text-align: left;"><h2> {{idioma.value}} </h2></th> </tr>
+                    </table>
+                </mat-expansion-panel>
+            </mat-accordion>
+            <button mat-button mat-raised-button color="warn" style="width: 100%; margin-top: 10px;" [routerLink] = "['/heroes/listado']"> Volver  </button>
+        </div>
+    </div>
+</ng-template>
+

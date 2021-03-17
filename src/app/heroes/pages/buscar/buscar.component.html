@@ -1,0 +1,42 @@
+<div fxLayout="column">
+    <div>
+        <h1>Buscador de Pokemon</h1>
+        <mat-divider></mat-divider>
+    </div>
+    <div fxLayout="column">
+        <h3>Buscador</h3>
+            <mat-form-field class="example-full-width">
+                <mat-label>Pokemon</mat-label>
+                <input  type="text" 
+                        placeholder=" Buscar" 
+                        aria-label="Pokemon" 
+                        matInput [(ngModel)]="termino"
+                        [matAutocomplete]="auto"
+                        (input) = "buscando()"
+                        (keyup.enter) = "buscando()"
+                >
+                <mat-autocomplete   autoActiveFirstOption #auto="matAutocomplete"
+                                    (optionSelected) = "opcionSeleccionada( $event )"
+                
+                >
+                    <mat-option *ngFor="let pkmn of pokemon" [value]="pkmn">
+                        <img src="../../../../assets/sprites/{{pkmn.id | number:'3.0-0'}}MS.png" style="vertical-align: middle;"> {{pkmn.name.english}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+
+    </div>
+    <div *ngIf="pokemonSeleccionado;else divNotFound">
+        <div style="width: 50%;">
+            <app-heroe-tarjeta [pokemon] = "pokemonSeleccionado"></app-heroe-tarjeta>
+        </div>
+    </div>
+
+</div>
+
+
+<ng-template #divNotFound>
+    <br><br><br><br>
+    <img *ngIf="termino.trim().length > 0 && pokemon.length == 0" src="../../../../assets/no-image.png" style="display: block; margin-left: auto; margin-right: auto; width: 50%;"><br><br>
+    <h1 *ngIf="termino.trim().length > 0 && pokemon.length == 0"  style="text-align: center;">Pokemon no encontrado :(</h1>
+</ng-template>
