@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Name, Pokemon, Base } from '../../interfaces/heroes.interface';
 import { HeroesService } from '../../services/heroes.service';
 import { switchMap } from 'rxjs/operators';
@@ -46,7 +46,9 @@ export class AgregarComponent implements OnInit {
 
   edit: Boolean = false;
 
-  constructor(private heroesService: HeroesService, private activatedRoute: ActivatedRoute) { }
+  constructor(private heroesService: HeroesService, 
+              private activatedRoute: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.activatedRoute.params
@@ -71,7 +73,7 @@ export class AgregarComponent implements OnInit {
       this.base['Sp. Attack'] = this.spatk;
       this.base['Sp. Defense'] = this.spdef;
       this.heroesService.postPokemon(this.pokemon)
-        .subscribe( resp => console.log("Post", resp) );
+        .subscribe(  pkmn => this.router.navigate(['/heroes', pkmn.id])  );
     }
     else if(this.edit){
       this.pokemon.type = this.tipo.filter(Boolean);
@@ -79,7 +81,7 @@ export class AgregarComponent implements OnInit {
       this.base['Sp. Defense'] = this.spdef;
       console.log(this.tipo);
       this.heroesService.updatePokemon(this.pokemon)
-        .subscribe( resp => console.log("Update: ",resp) );
+        .subscribe( pkmn => this.router.navigate(['/heroes', pkmn.id]) );
     }
 
   }
