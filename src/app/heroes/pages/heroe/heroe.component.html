@@ -38,7 +38,7 @@
                     </mat-panel-title>
                   </mat-expansion-panel-header>
                   <table mat-table style="width: 100%;">
-                    <tr mat-row *ngFor="let idioma of pokemon.name| keyvalue"> <th style="text-align: left;"><h2> {{idioma.key | titlecase}}:</h2></th> <th style="text-align: left;"><h2> {{idioma.value}} </h2></th> </tr>
+                    <tr mat-row *ngFor="let idioma of (pokemon.name | json ).split(',')"> <!-- <th style="text-align: left;"><h2> {{ idioma.key| titlecase}}:</h2></th> <th style="text-align: left;"><h2> {{idioma.value}} </h2></th> -->{{idioma}} </tr>
                     </table>
                 </mat-expansion-panel>
             </mat-accordion>
