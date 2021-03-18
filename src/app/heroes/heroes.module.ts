@@ -16,6 +16,7 @@ import { HeroeTarjetaComponent } from './components/heroe-tarjeta/heroe-tarjeta.
 import { ImagenPipe } from './pipes/imagen.pipe';
 import { FormsModule } from '@angular/forms';
 import { TipoImagenPipe } from './pipes/tipo-imagen.pipe';
+import { IconoPipe } from './pipes/icono.pipe';
 
 
 
@@ -25,7 +26,7 @@ import { TipoImagenPipe } from './pipes/tipo-imagen.pipe';
     BuscarComponent, 
     HeroeComponent, 
     HomeComponent, 
-    ListadoComponent, HeroeTarjetaComponent, ImagenPipe, TipoImagenPipe
+    ListadoComponent, HeroeTarjetaComponent, ImagenPipe, TipoImagenPipe, IconoPipe
   ],
   imports: [
     CommonModule,

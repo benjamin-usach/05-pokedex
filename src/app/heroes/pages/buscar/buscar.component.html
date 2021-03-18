@@ -20,7 +20,7 @@
                 
                 >
                     <mat-option *ngFor="let pkmn of pokemon" [value]="pkmn">
-                        <img src="../../../../assets/sprites/{{pkmn.id | number:'3.0-0'}}MS.png" style="vertical-align: middle;"> {{pkmn.name.english}}
+                        <img src="{{pkmn.id | number:'3.0-0' | icono }}" style="vertical-align: middle;"> {{pkmn.name.english}}
                     </mat-option>
                 </mat-autocomplete>
             </mat-form-field>
