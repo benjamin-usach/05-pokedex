@@ -15,6 +15,7 @@ import { MaterialModule } from '../material/material.module';
 import { HeroeTarjetaComponent } from './components/heroe-tarjeta/heroe-tarjeta.component';
 import { ImagenPipe } from './pipes/imagen.pipe';
 import { FormsModule } from '@angular/forms';
+import { TipoImagenPipe } from './pipes/tipo-imagen.pipe';
 
 
 
@@ -24,7 +25,7 @@ import { FormsModule } from '@angular/forms';
     BuscarComponent, 
     HeroeComponent, 
     HomeComponent, 
-    ListadoComponent, HeroeTarjetaComponent, ImagenPipe
+    ListadoComponent, HeroeTarjetaComponent, ImagenPipe, TipoImagenPipe
   ],
   imports: [
     CommonModule,

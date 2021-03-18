@@ -1,7 +1,7 @@
 export interface Pokemon {
-    id?:        number;
+    id:        number;
     name:       Name;
-    type?:      string[];
+    type:       string[];
     base?:      Base;
     alt_img?:   string;
 }
@@ -17,7 +17,7 @@ export interface Base {
 
 export interface Name {
     english:  string;
-    japanese: string;
-    chinese:  string;
-    french:   string;
+    japanese?: string;
+    chinese?:  string;
+    french?:   string;
 }

@@ -26,8 +26,15 @@ export class HeroesService {
 
   getSugerencias(termino: String): Observable<Pokemon[]>{
     return this.http.get<Pokemon[]>(`${ this.baseUrl }/pokemon?q=${ termino }&_limit=6`);
+  }
 
+  postPokemon(pokemon: Pokemon){
+    return this.http.post<Pokemon>(`${this.baseUrl}/pokemon`, pokemon);
 
+  }
+
+  updatePokemon(pokemon: Pokemon){
+    return this.http.put<Pokemon>(`${this.baseUrl}/pokemon/${pokemon.id}`, pokemon);
 
   }
 
