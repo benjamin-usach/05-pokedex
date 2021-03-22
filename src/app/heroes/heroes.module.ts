@@ -17,6 +17,7 @@ import { ImagenPipe } from './pipes/imagen.pipe';
 import { FormsModule } from '@angular/forms';
 import { TipoImagenPipe } from './pipes/tipo-imagen.pipe';
 import { IconoPipe } from './pipes/icono.pipe';
+import { ConfirmarComponent } from './components/confirmar/confirmar.component';
 
 
 
@@ -26,7 +27,7 @@ import { IconoPipe } from './pipes/icono.pipe';
     BuscarComponent, 
     HeroeComponent, 
     HomeComponent, 
-    ListadoComponent, HeroeTarjetaComponent, ImagenPipe, TipoImagenPipe, IconoPipe
+    ListadoComponent, HeroeTarjetaComponent, ImagenPipe, TipoImagenPipe, IconoPipe, ConfirmarComponent
   ],
   imports: [
     CommonModule,

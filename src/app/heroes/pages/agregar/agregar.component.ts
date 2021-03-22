@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Name, Pokemon, Base } from '../../interfaces/heroes.interface';
 import { HeroesService } from '../../services/heroes.service';
 import { switchMap } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmarComponent } from '../../components/confirmar/confirmar.component';
 
 @Component({
   selector: 'app-agregar',
@@ -48,7 +51,9 @@ export class AgregarComponent implements OnInit {
 
   constructor(private heroesService: HeroesService, 
               private activatedRoute: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private snackBar: MatSnackBar,
+              private matDialog: MatDialog) { }
 
   ngOnInit(): void {
     this.activatedRoute.params
@@ -73,7 +78,10 @@ export class AgregarComponent implements OnInit {
       this.base['Sp. Attack'] = this.spatk;
       this.base['Sp. Defense'] = this.spdef;
       this.heroesService.postPokemon(this.pokemon)
-        .subscribe(  pkmn => this.router.navigate(['/heroes', pkmn.id])  );
+        .subscribe(  pkmn =>{ 
+          this.router.navigate(['/heroes', pkmn.id]);
+          this.mostrarSnackbar("Pokemon capturado!");
+        });
     }
     else if(this.edit){
       this.pokemon.type = this.tipo.filter(Boolean);
@@ -81,9 +89,40 @@ export class AgregarComponent implements OnInit {
       this.base['Sp. Defense'] = this.spdef;
       console.log(this.tipo);
       this.heroesService.updatePokemon(this.pokemon)
-        .subscribe( pkmn => this.router.navigate(['/heroes', pkmn.id]) );
+        .subscribe( pkmn => {
+          this.router.navigate(['/heroes', pkmn.id]) 
+          this.mostrarSnackbar("Pokemon actualizado!");
+      });
     }
 
   }
+
+  borrarPokemon(){
+    const dialog = this.matDialog.open( ConfirmarComponent, {
+      width: '300px',
+      data: this.pokemon
+    } ); 
+    
+    dialog.afterClosed().subscribe((result) =>{
+      if(result){
+        this.heroesService.deletePokemon(this.pokemon)
+          .subscribe(resp=>{
+              this.router.navigate(['/heroes/listado']);
+              this.mostrarSnackbar("Pokemon eliminado.");
+          });
+
+      }
+    });
+  };
+
+  mostrarSnackbar(mensaje: string){
+    this.snackBar.open(mensaje, 'ok!', {
+      duration: 3000,
+      
+
+    });
+
+  }
+
 
 }

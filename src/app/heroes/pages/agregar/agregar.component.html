@@ -1,4 +1,5 @@
-<h1>Ingresar a la Pokedex <small>- pokemon -</small></h1>
+<h1 *ngIf="!edit">Ingresar a la Pokedex <small>- pokemon -</small></h1>
+<h1 *ngIf="edit">Editar {{pokemon.name.english}}</h1>
 
 <div fxLayout="row" fxLayoutGap=40px fxLayout.xs = "column">
     <div fxFlex="50" fxLayout="column">
@@ -86,12 +87,22 @@
             <mat-label>Francés</mat-label>
             <input matInput type="text" [(ngModel)]="nombre.french">
         </mat-form-field>
-        <button mat-raised-button color="warn" (click)="guardar()">
-            <mat-icon style="transform: rotate(180deg);">
-                catching_pokemon
-            </mat-icon>
-            Guardar
-        </button>
+        <div fxLayout="row" fxLayoutGap = "10px" fxLayout>
+            <button mat-raised-button color="warn" (click)="guardar()">
+                <mat-icon style="transform: rotate(180deg);">
+                    catching_pokemon
+                </mat-icon>
+                Guardar
+            </button>
+            <div class="spacer"></div>
+            <button mat-raised-button color="primary" *ngIf="pokemon.id" (click) = "borrarPokemon()">
+                <mat-icon style="transform: rotate(180deg);">
+                    clear
+                </mat-icon>
+                Eliminar
+            </button>
+
+        </div>
 
     </div>
     <div fxFlex="50" fxLayout="column">

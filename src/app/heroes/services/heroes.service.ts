@@ -38,5 +38,9 @@ export class HeroesService {
 
   }
 
+  deletePokemon(pokemon: Pokemon){
+    return this.http.delete(`${this.baseUrl}/pokemon/${pokemon.id}`);
+  }
+
 
 }
