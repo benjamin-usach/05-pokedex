@@ -27,7 +27,12 @@ import { ConfirmarComponent } from './components/confirmar/confirmar.component';
     BuscarComponent, 
     HeroeComponent, 
     HomeComponent, 
-    ListadoComponent, HeroeTarjetaComponent, ImagenPipe, TipoImagenPipe, IconoPipe, ConfirmarComponent
+    ListadoComponent, 
+    HeroeTarjetaComponent, 
+    ImagenPipe, 
+    TipoImagenPipe, 
+    IconoPipe, 
+    ConfirmarComponent
   ],
   imports: [
     CommonModule,

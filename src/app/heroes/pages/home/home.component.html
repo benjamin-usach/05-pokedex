@@ -42,8 +42,9 @@
       <mat-icon>menu</mat-icon>
     </button>
     <span class="spacer"></span>
+    <h2>{{auth.usuario}}</h2>
     <button mat-stroked-button
-            (click) = "sidenav.toggle()"
+            (click) = "logout()"
             color="primary"
             
     >
