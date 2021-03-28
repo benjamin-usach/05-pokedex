@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GoogleApiService } from 'ng-gapi';
 
 @Component({
   selector: 'app-clases',
@@ -7,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClasesComponent implements OnInit {
 
-  constructor() { }
+  constructor(gApi: GoogleApiService) {
+    gApi.onLoad().subscribe( () =>{
+      
+    })
+
+  }
 
   ngOnInit(): void {
   }
