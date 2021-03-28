@@ -11,28 +11,34 @@
   
     </mat-toolbar>
     <mat-nav-list>
-      <a  routerLink = "./listado"
+      <a  routerLink = "./clases"
           mat-list-item
           (click) = "sidenav.toggle()"
       > 
-      <mat-icon mat-list-icon> list </mat-icon>
-      <span>Listado de Pokemon</span>
+      <mat-icon mat-list-icon> school </mat-icon>
+      <span>Listado de clases</span>
       </a>
-      <a  routerLink = "./agregar"
+      <a  routerLink = "./students"
           mat-list-item
           (click) = "sidenav.toggle()"
       > 
-      <mat-icon mat-list-icon> add </mat-icon>
-      <span>Agregar Pokemon</span>
+      <mat-icon mat-list-icon> face </mat-icon>
+      <span>Administrar alumnos</span>
       </a>
-      <a  routerLink = "./buscar"
+      <a  routerLink = "./teachers"
           mat-list-item
           (click) = "sidenav.toggle()"
       > 
-      <mat-icon mat-list-icon> search </mat-icon>
-      <span>Buscar Pokemon</span>
+      <mat-icon mat-list-icon> people </mat-icon>
+      <span>Administrar profesores</span>
       </a>
-      
+      <a  routerLink = "./reports"
+          mat-list-item
+          (click) = "sidenav.toggle()"
+      > 
+      <mat-icon mat-list-icon> summarize </mat-icon>
+      <span>Ver reportes</span>
+      </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-toolbar>
@@ -42,9 +48,8 @@
       <mat-icon>menu</mat-icon>
     </button>
     <span class="spacer"></span>
-    <h2>{{auth.usuario}}</h2>
+    <h2>USER</h2>
     <button mat-stroked-button
-            (click) = "logout()"
             color="primary"
             
     >
